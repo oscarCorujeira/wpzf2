@@ -5,4 +5,4 @@ demos/
 extras/documentation
 .project
 .settings
-.gitignore
+*.local.php

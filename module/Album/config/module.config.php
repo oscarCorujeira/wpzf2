@@ -18,14 +18,31 @@ return array(
 									),
 							),
 					),
+					'albumrest' => array(
+							'type'    => 'segment',
+							'options' => array(
+									'route'    => '/album-rest[/:id]',
+									'constraints' => array(
+											'id'     => '[0-9]+',
+									),
+									'defaults' => array(
+											'controller' => 'Album\Controller\Rest',											
+									),
+							),
+					),
+					
 			),
+			
 	),
    
-    'controllers' => array(
-        'invokables' => array(
-            'Album\Controller\Index' => 'Album\Controller\IndexController'
-        ),
-    ),
+    
+	'controllers' => array(
+			'invokables' => array(
+					'Album\Controller\Index' 		=> 'Album\Controller\IndexController',
+					'Album\Controller\Rest' 		=> 'Album\Controller\RestController',
+					
+			),
+	),
     'view_manager' => array(
         'template_map' => array(
         	//'layout/layout'           => __DIR__ . '/../view/layout/backend.phtml',
@@ -34,6 +51,9 @@ return array(
         'template_path_stack' => array(
             __DIR__ . '/../view',
         ),
+    	'strategies' => array(
+    			'ViewJsonStrategy',
+    	),
     ),
     // Placeholder for console routes
     'console' => array(
@@ -42,4 +62,9 @@ return array(
             ),
         ),
     ),
+		
+	'navigation' => array(
+			'default' => include('menu.config.php')
+	),
 );
+
